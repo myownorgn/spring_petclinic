@@ -30,9 +30,12 @@ jobs:
 
       - name: Compile
         run: mvn -B clean compile
+      - name: Unit tests
+        run: mvn -B test
+
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           files: |
-            **/target/surefire-reports/*.xml        
+            **/target/surefire-reports/*.xml
