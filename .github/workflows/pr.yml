@@ -39,3 +39,12 @@ jobs:
         with:
           files: |
             **/target/surefire-reports/*.xml
+      - name: SonarCloud Analysis
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: |
+          mvn -B sonar:sonar \
+            -Dsonar.host.url=${{ vars.SONAR_URL }} \
+            -Dsonar.organization=${{ vars.SONAR_ORGANIZATION }} \
+            -Dsonar.projectKey=${{ vars.SONAR_PROJECT_KEY }} \
+            -Dsonar.token=${SONAR_TOKEN}
